@@ -1,0 +1,281 @@
+digraph PostmodernAnalysis1{
+	subgraph Preparation{
+		label="0";
+		"4op"[label="4 Operations"];
+		"bw"[label="BW"];
+		"perfect"; #Rの完備
+		"quotient"; #商判定法
+		"cauchy"[label="Cauchy Sequence"];
+		"perfect"->"cauchy";
+		
+	}
+	
+
+	subgraph LimitAndContinuity{
+		label="1";
+		
+		1.1[shape="box"];
+		1.1->1.2[label="C"];
+		1.1->1.3[style="dashed"];
+		1.3->1.4[label="C"];
+		1.2->1.4;
+		1.4->1.5;
+		"4op",1.4->1.6;
+		1.6->1.7;
+		1.6->1.8;
+		1.9[shape="box"];
+		"bw"->1.10;
+		1.11,1.12,1.13[shape="box"];
+		#1.12:Lipschitz,Holder
+		1.11->1.13[style="dashed"];
+		1.12->1.13[style="dashed"];
+		"bw"->1.14;
+		"bw"->1.15; #最大値
+
+		1.9->1.10[style="dashed"];
+		
+	}
+	
+	subgraph Differential{
+		2.1[shape="box"];
+		1.1->2.1[style="dashed"];
+		2.1->2.2[label="C"];
+		2.2->2.3;
+		"4op"->2.4;
+		2.3->2.5;
+		2.3->2.6;
+		2.7;
+		2.8,2.9[shape="box"];
+		"vw"[label="Various Function Derivative"];
+		2.4,2.5,2.6,2.7->"vw";
+		2.8->2.9[style="dashed"];
+		2.1->2.8[style="dashed"];
+		
+		
+	}
+
+	subgraph ODE{
+		3.1[shape="box"];
+		3.1->3.2[style="dashed"];
+		3.2,1.15->3.3; #ロル
+		3.3->3.4; #第二平均値
+		3.4->3.5; #第一平均値
+		3.5->3.6; #有限増分みたいなの、0の積分
+		3.6->3.7; #導関数と単調増加
+		3.6->3.8; #
+		3.6->3.9; #定数の積分
+		3.6->3.10; #expのODE
+		3.11; #ODEとゼロ点
+		3.11->3.10[style="dotted"];
+		1.15->3.11[label="?"];
+		3.6->3.11; #ODEのゼロ解の条件
+		1.12->3.12[style="dashed"] #LipschitzとODEの解の一意性
+		3.11->3.12;
+		3.12->6.16[style="dashed"];
+		3.13->6.16[style="dashed"];
+		3.6->3.13; #一様Lipschitzの必要
+		3.7->3.14; #二階微分と極値
+		3.3->3.15; #Taylor's theorem		
+	}
+
+	subgraph Banach{
+		4.1; #収束性と不動点
+		4.1->4.2; #導関数と不動点
+		4.3[shape="box"]; #ノルム
+		4.4[shape="box"]; #距離
+		4.5[shape="box"]; #ノルムに関するコーシー列
+		4.6[shape="box"]; #Banach Space(完備)
+		4.1->4.7[style="dashed"]; #Banachの不動点定理
+		4.8[shape="box"]; #距離空間についてのBanach空間(完備)
+
+		"perfect"->4.1;
+		4.3->4.4[style="dashed", label="G"];
+		"cauchy"->4.5[style="dashed", label="G"];
+		"perfect"->4.6[style="dashed", label="G"];
+		4.5->4.6[style="dashed", label="G"];
+		4.5->4.8[style="dashed", label="G"];
+		4.4->4.8[style="dashed", label="G"];
+		
+
+	}
+
+	subgraph Arzela_Ascoli{
+		5.1[shape="box"]; #各点収束
+		5.1->5.2[style="dashed"];
+		5.2[shape="box"]; #一様収束
+		5.3; #一様収束による連続性の伝播
+		5.4[shape="box"]; #関数のノルム
+		5.4->5.5[style="dashed",label="DW"]; #ノルムになること
+		5.2->5.6[label="C"];
+		1.11->5.7[style="dashed"]; #有界連続な関数はBanach空間をなす
+		"perfect"->5.7;
+		5.3->5.7;
+		5.7->5.8; #Weierstras
+		5.8->5.9; #冪の無限級数の一様収束条件
+		"quotient"->5.9;
+		5.10[shape="box"]; #収束半径
+		5.9->5.10; #well-defined
+		2.2,3.6,5.7->5.11; #連続微分可能関数に収束する関数列
+		5.2->5.11[style="dashed"];
+		5.11->5.12[label="G"];
+		5.13->5.12; #可算に切られた区間での有限増分
+		5.14[shape="box"]; #n回連続微分可能のノルム
+		5.14->5.15[style="dashed"]; #ノルムになる
+		1.13->5.14[style="dashed"];
+		5.5->5.15[style="dashed"];
+		5.7,5.11->5.16;
+		5.14->5.17[style="dashed"];
+		5.16->5.17;
+		5.18[shape="box"] #一様有界、同等連続
+		3.6,5.18->5.19;
+		3.18,5.2->5.20[style="dashed"]; #Arzela-Ascoli
+		"bw"->5.20;
+		5.19,5.20->5.21; #応用
+
+		2.9->5.14[style="dashed"];
+		
+	}
+
+	subgraph IntegralAndODE{
+		6.1[shape="box"]; #Riemann Integral,原始関数
+		5.13->6.2; #fの原始関数は定数差
+		#有界でない閉区間って(-infty,0)とかかなあ
+		6.3[shape="box"]; #階段関数、許容関数
+		5.2->6.3[style="dashed"];
+		6.3->6.4[style="dashed"]; #連続関数は許容関数
+		6.3->6.5[style="dashed"];
+		5.12->6.5;
+		5.13,2.2->6.6; #fに連続までつけるとどこでも微分可能になる。
+		#6.1の定義よりも強くて、D=\emptyということになる。
+		#gがfの原始関数で、g'がfと一致しない点があるときとは？
+		6.7[shape="box"];
+		6.2->6.7[style="dashed",label="DW"];
+		6.8; #連続関数と許容関数の積は許容関数
+		6.8->6.9; #置換積分
+		6.8->6.10; #部分積分
+		5.13->6.11; #積分の単調性
+		1.14,6.11->6.12; #平均値の定理
+		6.11->6.13; #積分の三角不等式
+		5.12->6.14; #積分と極限の交換
+		6.3->6.14[style="dashed", label="?"];
+		#許容関数であることが、「収束する1点の存在」を保証している？
+		
+		1.10->6.4; #「をとる」のところで暗に使っている
+		6.1->6.5[style="dashed"];
+		
+		6.13,6.14->6.15; #積分と無限和の交換
+		4.7,6.13->6.16; #Picard-Lindroef
+		
+	}
+	subgraph distance{
+		7.1[shape="box"]; #距離
+		4.3->7.2[style="dashed"]; #距離とノルム
+		7.3[shape="box"]; #R^dのノルム
+		7.1->7.4[style="dashed"]; #距離空間の部分集合
+		4.3->7.5[style="dashed"]; #ノルムは連続
+		7.6[shape="box"]; #距離についての収束とCauchy列
+		"cauchy","convergence"->7.6[style="dashed",label="G"];
+		7.7; #成分の収束と点の収束、R^dの完備
+		7.8[shape="box"];#距離についての連続
+		7.8->7.9[style="dashed",label="C"]; #連続の特徴付け
+		1.2->7.9[style="dashed",label="G"];
+		7.10[shape="box"]; #距離についての一様連続
+		1.9->7.10[style="dashed",label="G"];
+		7.7->7.11; #成分と連続、一様連続
+		1.6->7.12[style="dashed", label="G"]; #四則演算
+		7.13; #合成と連続性
+		7.14; #一様収束
+		5.2->7.14[style="dashed",label="G"]; 
+		5.3->7.15[style="dashed",label="G"]; #連続性の伝播
+		7.16; #線型写像の有界
+		7.16->7.17[style="dashed"]; #線型写像では有界と連続が同値
+		7.18[shape="box"] ; #連続線形写像のノルム
+		7.19[shape="box"]; #連続線形作用素の空間B(V,W)
+		7.19->7.20[style="dashed"]; #WがBanach空間でVがノルム空間なら、B(V,W)は完備
+		7.21; #全単射連続線形写像の級数表示
+		7.22[shape="box"]; #開球、閉球
+		7.22->7.23[style="dashed"];
+		7.24[shape="box"]; #開集合、開近傍、閉集合
+		7.25; #開球は開集合
+		7.25->7.26; #開集合の性質
+		7.24->7.27[style="dashed",label="C"]; #閉集合の特徴付け
+		7.27->7.28; #距離空間の有限部分集合は閉
+		7.29[shape="box"]; #境界、内部、閉包
+		7.30; #境界は閉、内部は開、閉包は閉
+		#自分でつけなおしたほうが早い。部分集合をとっとと全称と存在に持っていくのと、X-dMの表現がミソ
+		7.31; #逆像と関数の連続性
+		7.32[shape="box"]; #凸
+		7.33[shape="box"]; #連結
+		7.33->7.34[style="dashed"]; #「閉でかつ開ならば～」
+		7.30->7.35; #omega1とomega2の境界上の点について議論す
+		#る。その点の近傍はomega1とomega2の両方を含んでしまう
+		#ので、omega1とomega2両方の境界上にあることになる。
+		#omega1もomega2も開なので、omega1、omega2のどちらにも
+		#含まれないことになる。矛盾。
+		#そういうわけで、補題として「開集合Aについて、pがdAに
+		#あるときpはAに入らない」を用意するといい。
+		#あと、ちゃんと「連結でない」ことを仮定して、諸々の条件を出しておかないと混乱する。
+		7.33->7.36[style="dashed"];  #Rの区間=Rの連結空間
+		#「区間は連結」をやってないのでは？→7.35と、B\cap\omegaでBの開集合が書けることを使えば行けるか。
+		7.35->7.36[label="?"];
+		7.37[shape="box"]; #有界、全有界(どんなに小さいのでもうまく有限個貼り合わせて覆える)
+		#有界で全有界でないとき？？→{2^(-n);n=0,1,...}とか？
+
+		7.17->7.18[style="dashed",label="DW"];
+		7.18->7.19[style="dashed"];
+		7.19->7.21[style="dashed"];
+		7.17->7.21;
+		7.29->7.30[style="dashed"];
+		7.8,7.24->7.31[style="dashed"];
+
+		7.38[shape="box"]; #コンパクト、点列コンパクト
+		7.39; #コンパクト-点列コンパクト-完備全有界
+		#3->1が不明->補足参照
+		7.27,7.39->7.40;
+		7.39,7.40,7.7->7.41; #Heine-Borel
+		7.39,7.41->7.42; #Boltzano-Weierstras?
+		7.42->"bw";
+		7.39->7.43; #最大値
+		1.15->7.43[style="dashed",label="G"]; #
+		7.31->7.44; #コンパクト空間から距離空間の連続関数は一様連続
+		1.10->7.44[style="dashed", label="G"];
+		7.31->7.45; #コンパクト性は連続写像で保たれる
+		#p.103誤植x_n^nはおかしい
+		7.43,7.41,7.7->7.46; #ノルムの同値性 補足参照
+		7.47[shape="box"]; #距離空間上の連続写像に対するコンパクト
+		7.48[shape="box"]; #位相
+		7.26,7.31->7.48[style="dashed"];
+		7.49[shape="box"]; #ハウスドルフ空間
+		7.23->7.49[style="dashed"];
+		7.50[shape="box"]; #連続
+		7.31->7.50[sytle="dashed"];
+
+		#ベクトル空間ならばノルム空間ならばバナッハ空間
+	}
+
+	subgraph BanachDiff{
+		8.1[shape="box"]; #バナッハ空間での微分
+		7.18->8.2[style="dashed"]; #一意性
+		8.2->8.1[style="dashed", label="DW"];
+		7.18->8.3[style="dashed"]; #微分可能なら連続
+		2.3->8.3[style="dashed", label="G"];
+		8.1->8.3[style="dashed"];
+		8.1->8.4[style="dashed"]; #線形性
+		8.1->8.5[style="dashed"]; #連鎖律
+		2.6->8.5[style="dashed",label="G"];
+		8.1->8.6[style="dashed"]; #平均値の定理
+		# c\in [a,b]なので，c<bかc=bしかありえない．
+		8.5->8.7; #直線上の平均値の定理
+		8.7->8.8; #変形
+		8.9[shape="box"]; #連続微分可能
+		8.10[shape="box"]; #偏微分
+		8.11; #偏微分と微分
+		8.10->8.11[style="dashed"];
+		8.5->8.11;
+		8.8,8.11->8.12; #連続微分可能と偏微分が連続なことの同値
+		8.13; #二階微分
+		
+		
+	}
+
+}	

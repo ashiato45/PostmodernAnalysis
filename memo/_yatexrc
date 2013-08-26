@@ -1,0 +1,8 @@
+(setq tmp-section-table '(
+("Forall")
+("norm")
+))
+
+(setq YaTeX::usepackage-alist-local '(
+("amsmath,amssymb,amsfonts")
+))
