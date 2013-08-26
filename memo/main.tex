@@ -4,6 +4,7 @@
 \title{証明メモ}
 \author{}
 \date{}
+\usepackage{graphicx}	% required for `\includegraphics' (yatex added)
 \begin{document}
 \maketitle
 
@@ -130,5 +131,65 @@ $\sup A\in A$かどうかという問いは
 \[
  Df\colon \Omega(\subset V) \to \Omega(\subset V) \to W
 \]
-となっており，後者は線型写像のノルムで議論しなければならないあたり注意がいる．
+となっており，後者は線型写像のノルムで議論しなければならないあたり注意が
+いる．
+
+\section{8.8の一次元}
+大雑把に両辺割って
+\[
+\Forall{z} \left|\frac{f(y)-f(x)}{y-x}-Df(z)\right| 
+\le \sup_{\xi\in S}\left|Df(\xi)-Df(z)\right|
+\]
+となるが，$\left(f(y)-f(x)\right)/(y-x)$のほうは左端と右端を直線で繋いだ
+平均的傾き，右辺の$Df(\xi)$のほうは$\sup$のおかげで大きくなっている．引
+いてるのは両方とも同じなので，同じ感じ．
+
+
+\section{8.14の評価}
+p.102の
+\[
+ \norm{\varphi(1)-\varphi(0)-D\varphi(0)(1)}\le 4\epsilon(\norm{s}+\norm{t})\norm{s}
+\]
+だが，21式により，
+\[
+ \norm{\varphi(1)-\varphi(0)-D\varphi(0)(1)}\le \sup_{\tau\in[0,1]}\norm{D\varphi(\tau)-D\varphi(0)}
+\]
+さらに足し引きして三角不等式を使って，
+\[
+\sup_{\tau\in[0,1]}\norm{D\varphi(\tau)-D\varphi(0)} \le 
+\sup_{\tau\in[0,1]}\left(\norm{D\varphi(\tau)-D^2 f(x_0)(t,s)} + 
+\norm{D^2 f(x_0)(t,s) - D\varphi(0)}\right)
+\]
+となる．ここで，22式への$\rho=0,\, \tau$の代入例
+\begin{align*}
+ \norm{D\varphi(0)-D^2 f(x_0)(t,s)}&\le 2\epsilon(\norm{s}+\norm{t})\norm{s} \\
+ \norm{D\varphi(\tau)-D^2 f(x_0)(t,s)}&\le 2\epsilon(\norm{s}+\norm{t})\norm{s}
+\end{align*}
+を使える．まとめれば，得られる．
+
+\section{8.14の$\lambda$をいれるくだり}
+$\lambda$を入れても不等式が保たれるので，本来十分小さくないとなりたたな
+い$s,t$は実は大きくても成り立つということが分かる．したがって，特に
+$\norm{s},\, \norm{t}=1$のときを考えても不等式は保たれる．すると
+\[
+ \norm{D^2 f(x_0)(t,s)-D^2f(x_0)(s,t)}\le 24\epsilon
+\]
+がなりたつ．すると，$1$で考えているから，2変数の関数を吐く関数についてのノルムを考えたことになる．
+
+
+\section{8.15の等式}
+適用順がみそ．
+\[
+ Df = \left[x'_0\mapsto \left[t'\mapsto \sum_{i=1}^{d}D_i f(x'_0)(t'^i)\right]\right]
+\]
+となっている．
+\begin{align*}
+ D^2 f(x_0)(t,s) &= D\left(Df\right)(x_0)(t)(s) \\
+ & = D\left(\left[x'_0\mapsto \left[t'\mapsto \sum_{j=1}^{d}D_j f(x'_0)(t'^j)\right]\right] \right)(x_0)(t)(s) \\
+ & = \left(\left[x'_0\mapsto \left[t'\mapsto \sum_{j=1}^{d}D_j \left(\left[x''_0\mapsto \left[t''\mapsto \sum_{i=1}^{d}D_i f(x''_0)(t''^i)\right]\right] \right)(x'_0)(t'^j)\right]\right] \right)(x_0)(t)(s) \\
+  & = \sum_{j=1}^{d}D_j \left(\left[x''_0\mapsto \left[t''\mapsto \sum_{i=1}^{d}D_i f(x''_0)(t''^i)\right]\right] \right)(x_0)(t^j) \\
+   & = \sum_{j=1}^{d}\sum_{i=1}^{d} D_j  \left(\left[x''_0\mapsto \left[t''\mapsto D_i f(x''_0)(t''^i)\right]\right] \right)(x_0)(t^j) \\
+ & = \sum_{j=1}^{d}\sum_{i=1}^{d} \left(D_j D_i f\right)(x_0)(t^i) \\
+\end{align*}
+
 \end{document}
