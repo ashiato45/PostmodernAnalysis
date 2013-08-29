@@ -1,12 +1,16 @@
 \documentclass[]{jsarticle}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{ashiato45}
-\title{証明メモ}
-\author{}
-\date{}
+\title{ポストモダン解析学 証明メモ}
+\author{ashiato45}
 \usepackage{graphicx}	% required for `\includegraphics' (yatex added)
+\newcommand{\desceq}[1]{\overset{\text{#1}}{=}}
+\newcommand{\many}[2]{\underbrace{#1 \cdots #1}_{#2 \text{個}}}
 \begin{document}
 \maketitle
+
+\section{これは何？}
+シュプリンガー(丸善)の「ポストモダン解析学」，原題は「Postmodern Analysis」の行間埋めの記録．
 
 \section{定理7.39のi$\rightarrow$iii}
 $K$を対象の集合とする．背理法の仮定(仮定1)をすると，$K$の開被覆であって有限被覆
@@ -99,6 +103,16 @@ $x$は勝手に走るので，$(x-x_0)/\norm{x-x_0}$は大きさ$1$のやつ全部を走る．
 \section{p.112の例4，「1」ってなんだ}
 傾きなので，$x$の変化量という意味っぽい
 
+\section{定理8.5}
+$x_0$が二箇所に出てしまうので，ダミー変数を使わないと書けない．
+\[
+ D(g\circ f)(x_0)=Dg\left(f(x_0)\right)\circ Df(x_0)
+\]
+かけ算でなくなっているので注意．関数で書くと，
+\[
+D(g\circ f) = \left[x_0\mapsto Dg\left(f(x_0)\right)\circ Df(x_0)\right]
+\]
+
 \section{定理8.6 平均値の定理}
 $\eta$をとる．
 \[
@@ -190,6 +204,99 @@ $\norm{s},\, \norm{t}=1$のときを考えても不等式は保たれる．すると
   & = \sum_{j=1}^{d}D_j \left(\left[x''_0\mapsto \left[t''\mapsto \sum_{i=1}^{d}D_i f(x''_0)(t''^i)\right]\right] \right)(x_0)(t^j) \\
    & = \sum_{j=1}^{d}\sum_{i=1}^{d} D_j  \left(\left[x''_0\mapsto \left[t''\mapsto D_i f(x''_0)(t''^i)\right]\right] \right)(x_0)(t^j) \\
  & = \sum_{j=1}^{d}\sum_{i=1}^{d} \left(D_j D_i f\right)(x_0)(t^i) \\
+\end{align*}
+
+\section{8.17}
+\subsection{準備}
+式26は左辺の微分は普通の微分，右辺の微分はフレッシェ微分であることに注意．
+でないと左辺が関数で右辺が値という訳の分からないことになる．
+
+ここでは，普通の微分を$\tilde{D}$と書く．普通の微分に合わせるには，フレッ
+シェ微分の結果に$1$を代入しなければならない．つまり，
+\[
+ \tilde{D}(f) = \left[\tau\mapsto (Df)(\tau)(1)\right]
+\]
+
+\begin{align*}
+ g& = \left[\tau \mapsto f(x_0+\tau t)\right] \\
+ & =\left[\tau \mapsto f(\left[\tau' \mapsto x_0+\tau' t\right](\tau))\right] \\
+  & =f\circ \left[\tau' \mapsto x_0+\tau' t\right] \\
+\end{align*}
+に注意．
+
+また，微分の性質として，$f\colon V\to B(W,U)$について，
+\[
+ D\left[v\mapsto f(v)(w)\right] = \left[v\mapsto (Df)(v)(w)\right]
+\]
+が言える．実際，
+\small
+\begin{align*}
+ \norm{\left[v'\mapsto f(v')(w)\right](v)-\left[v'\mapsto
+ f(v')(w)\right](v_0)-\left[v'\mapsto (Df)(v')(w)\right](v-v_0)}_U &=
+ \norm{f(v)(w)- f(v_0)(w) - (Df)(v-v_0)(w)}_U \\
+ & \le  \norm{f(v)- f(v_0) - (Df)(v-v_0)}_{W\to U} \\
+\end{align*}
+\normalsize
+である．また，これの系として，$f\colon V\to B(W,U),\, g\colon X\to V$に
+ついて，
+\[
+ D\left[\tau\mapsto f(g(\tau))(w)\right] 
+= \left[\tau\mapsto \left(Df\left(g(\tau)\right)(w)\right)\circ Dg(\tau)\right]
+\]
+実際，
+\begin{align*}
+ D\left[\tau\mapsto f(g(\tau))(w)\right] 
+&=  D\left[\tau\mapsto \left[\xi\mapsto
+ f(\xi)(w)\right]\left(g(\tau)\right) \right]  \\
+ & = D\left(\left[\xi\mapsto f(\xi)(w)\right]\circ g\right) \\
+ & = \left[\tau\mapsto \left(D\left[\xi\mapsto
+ f(\xi)(w)\right]\left(g(\tau)\right)\right)\circ Dg(\tau)\right] \\
+ & = \left[\tau\mapsto \left(\left[\xi\mapsto
+ Df(\xi)(w)\right]\left(g(\tau)\right)\right)\circ Dg(\tau)\right] \\
+ & = \left[\tau\mapsto \left(Df\left(g(\tau)\right)(w)\right)\circ Dg(\tau)\right] \\
+\end{align*}
+
+
+\subsection{$\tilde{D}g$}
+練習に．
+\begin{align*}
+\tilde{D}g &= \left[\tau\mapsto Dg(\tau)(1)\right] \\
+ & = \left[\tau\mapsto D\left(f\circ\left[\tau'\mapsto x_0+\tau'
+ t\right]\right)(\tau)(1)\right] \\
+ & = \left[\tau\mapsto \left[\xi\mapsto Df\left(\left[\tau'\mapsto
+ x_0+\tau' t\right](\xi)\right)\circ \left(D\left[\tau'\mapsto x_0+\tau'
+ t\right](\xi)\right)\right](\tau)(1)\right] \\
+ & = \left[\tau\mapsto\left[\xi\mapsto Df\left(x_0+\xi t\right)\circ
+ \left(\left[\eta\mapsto \left[\tau'\mapsto \tau(
+ t)\right]\right](\xi)\right)\right](\tau)(1)\right] \\
+ & = \left[\tau\mapsto\left[\xi\mapsto Df(x_0+\xi
+ t)\circ\left[\tau'\mapsto \tau' t\right]\right](\tau)(1)\right] \\
+ & = \left[\tau\mapsto Df(x_0+\tau t)\circ \left[\tau'\mapsto \tau'
+ t\right](1)\right] \\
+ & = \left[\tau\mapsto Df(x_0+\tau t)(t)\right]
+\end{align*}
+
+\subsection{$\tilde{D}^{j+1}g$}
+\begin{align*}
+ \tilde{D}^{j+1}g(\tau) &= \tilde{D}\left(\tilde{D}^j g\right)(\tau) \\
+ & = \tilde{D}\left[\tau'\mapsto D^j f(x_0+\tau' t)(\many{t}{j}) \right] \\
+ & = \left[\tau\mapsto D\left[\tau'\mapsto D^j f(x_0+\tau' t)(\many{t}{j}) \right](\tau)(1)\right]
+\end{align*}
+中の項についてさらに計算する．
+\begin{align*}
+ D\left[\tau'\mapsto D^j f(x_0+\tau' t)(\many{t}{j}) \right] &=
+ D\left[\tau'\mapsto D^j f\left(\left[\xi\mapsto x_0+\xi t\right](\tau')\right)(\many{t}{j}) \right] \\
+ & =  \left[\tau'\mapsto D^{j+1} f\left(\left[\xi\mapsto x_0+\xi t\right](\tau')\right)(\many{t}{j})\circ D\left[\xi\mapsto x_0+\xi t\right](\tau') \right] \\
+ & =  \left[\tau'\mapsto D^{j+1} f\left(x_0+\tau' t\right)(\many{t}{j})\circ \left[\eta\mapsto\left[\xi\mapsto \xi t\right]\right](\tau') \right] \\
+ & =  \left[\tau'\mapsto D^{j+1} f\left(x_0+\tau' t\right)(\many{t}{j})\circ \left[\xi\mapsto \xi t\right] \right]
+\end{align*}
+これを入れて，
+\begin{align*}
+ \tilde{D}^{j+1}g(\tau)
+ & = \left[\tau\mapsto \left[\tau'\mapsto D^{j+1} f\left(x_0+\tau' t\right)(\many{t}{j})\circ \left[\xi\mapsto \xi t\right] \right](\tau)(1)\right] \\
+ & = \left[\tau\mapsto D^{j+1} f\left(x_0+\tau t\right)(\many{t}{j})\circ \left[\xi\mapsto \xi t\right](1)\right] \\
+ & = \left[\tau\mapsto D^{j+1} f\left(x_0+\tau t\right)(\many{t}{j})(t)\right] \\
+ & = \left[\tau\mapsto D^{j+1} f\left(x_0+\tau t\right)(\many{t}{j+1})\right] \\
 \end{align*}
 
 \end{document}

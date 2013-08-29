@@ -1,4 +1,5 @@
 (setq tmp-section-table '(
+("many" 2)
 ("Forall")
 ("norm")
 ))
