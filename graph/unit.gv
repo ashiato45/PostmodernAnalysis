@@ -279,8 +279,31 @@ digraph PostmodernAnalysis1{
 		8.16[shape="box"];
 		8.5->8.17; #Taylorの公式
 		8.17->8.18; #Taylorの定理
-		
-		
+	}
+
+	subgraph Rd{
+		9.1[shape="box"]; #gamma_f, N_f(c),等位面,内積,偏微分
+		9.2[shape="box"]; #方向微分,vは大きさ1
+		9.3[shape="box"]; #勾配
+		8.1->9.4[style="dashed"]; #微分、方向微分、勾配
+		8.15->9.5; #偏微分の交換
+		9.6[shape="box"]; #ヘッセ行列
+		9.5->9.7; #ヘッセ行列は対称
+		9.6->9.7[style="dashed"];
+		9.8[shape="box"]; #極大、極小
+		9.9[shape="box"]; #極値の点と偏微分
+		9.10[shape="box"]; #正定値、半正定値
+		7.41,7.43->9.11; #正定値の特徴付け
+		9.10->9.11[style="dashed",label="C"]; 
+		8.18,9.11->9.12; #正定値、不定値とヘッセ行列
+		9.12->9.13[style="dashed", label="C"];
+		9.14[shape="box"]; #ラプラス作用素
+		9.15[shape="box"]; #熱方程式、波動方程式
+		9.16[shape="box"]; #2階線形微分作用素
+		9.17[shape="box"]; #発散
+		9.3,9.17->9.18[style="dashed"]; 
+		9.19[shape="box"]; #回転
+		9.3,9.19->9.20[style="dashed"];
 		
 	}
 
