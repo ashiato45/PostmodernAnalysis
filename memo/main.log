@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.1415926-p3.3-110825-2.4 (sjis) (TeX Live 2012/W32TeX) (format=platex 2012.7.27)  5 SEP 2013 01:29
+This is e-pTeX, Version 3.1415926-p3.3-110825-2.4 (sjis) (TeX Live 2012/W32TeX) (format=platex 2012.7.27)  11 SEP 2013 00:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -482,14 +482,16 @@ Overfull \hbox (40.94456pt too wide) in paragraph at lines 241--241
 [] 
  []
 
-[5] [6] [7] [8] [9] [10] (./main.aux) ) 
+[5] [6] [7] [8] [9] [10]
+File: img/GEDC0001.JPG Graphic file (type eps)
+ <img/GEDC0001.JPG> [11] [12] [13] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 7383 strings out of 494059
- 118136 string characters out of 3158978
+ 7388 strings out of 494059
+ 118185 string characters out of 3158978
  169041 words of memory out of 3000000
- 10727 multiletter control sequences out of 15000+200000
+ 10729 multiletter control sequences out of 15000+200000
  20768 words of font info for 93 fonts, out of 3000000 for 9000
  750 hyphenation exceptions out of 8191
  37i,18n,33p,296b,398s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on main.dvi (10 pages, 39068 bytes).
+Output written on main.dvi (13 pages, 45376 bytes).
