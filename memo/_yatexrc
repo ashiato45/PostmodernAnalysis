@@ -7,3 +7,7 @@
 (setq YaTeX::usepackage-alist-local '(
 ("amsmath,amssymb,amsfonts")
 ))
+(setq tmp-env-table '(
+("dmath*")
+("dgroup*")
+))

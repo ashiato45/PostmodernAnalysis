@@ -9,6 +9,9 @@
 \newcommand{\subst}[2]{\left.#1\right|_{#2}}
 \newcommand{\exdesc}[1]{\condition{(#1)}}
 \newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Inc}{\mathrm{Inc}}
+
 \begin{document}
 \maketitle
 
@@ -600,6 +603,92 @@ $g(\Omega'')$は開集合．
 \subsection{「これと(3)を併せて」}
 併せなくても$Df(y_0)=Df(g(x_0))$が可逆であることを仮定しているのだから，
 左から逆を合成すれば終わりでは？？
+
+\section{10.5 Lagrange}
+$DF$を左側$d-m$と右側$m$に分ける．「最後$m$行」は「最後$m$列」では？
+
+$DH$の計算がむずかしかった．型として，$z\in \R^{d-m}$と
+$g\colon \R^{d-m}\to \R^m$に注意する．
+\begin{dgroup*}
+ \begin{dmath*}
+  DH = D\left[z\hiderel\mapsto h\left(z,g(z)\right)\right]
+ \end{dmath*}
+ \begin{dmath*}
+  = D\left[z\hiderel\mapsto h\circ \left[z'\hiderel\mapsto \left(z',g(z')\right)\right]\right]
+ \end{dmath*}
+ \begin{dmath*}
+  = \left[z\hiderel\mapsto Dh(z,g(z))\circ D\left[z'\hiderel\mapsto (z',g(z'))\right]\right]
+ \end{dmath*}
+ \begin{dmath*}
+  =\left[z\hiderel\mapsto Dh(z,g(z))\circ \left(\Id,Dg(z)\right)\right]
+ \end{dmath*}
+ \begin{dmath*}
+  \desceq{8.11} \left[z\hiderel\mapsto
+D_{1\cdots d-m}h\left(z,g(z)\right)\circ \Id
++ D_{d-m+1 \cdots d}h\left(z,g(z)\right)\circ Dg(z)
+\right]
+ \end{dmath*}
+\end{dgroup*}
+ここで$z=z_0$とし，
+\[
+D_{1\cdots d-m}h\left(z_0,g(z_0)\right)\circ \Id
++ D_{d-m+1 \cdots d}h\left(z_0,g(z_0)\right)\circ Dg(z_0)
+\]
+これは，152頁の「別の書き方をすると…」の部分と同値．
+
+これに$\Inc_i\,(i=1,\cdots,d-m)$を合成するが，その前に先のを包含写像で書き直す．微分可能なのでこういうことができる．
+\[
+Dh\left(z_0,g(z_0)\right)\circ\Inc_{1\cdots d-m}
++ Dh\left(z_0,g(z_0)\right)\circ \Inc_{d-m+1 \cdots d}\circ Dg(z_0) 
+\]
+合成し，
+\begin{dgroup*}
+ \begin{dmath*}
+  \left(Dh\left(z_0,g(z_0)\right)\circ\Inc_{1\cdots d-m}
++ Dh\left(z_0,g(z_0)\right)\circ \Inc_{d-m+1 \cdots d}\circ Dg(z_0)
+  \right)\circ \Inc_i
+ \end{dmath*}
+ \begin{dmath*}
+  =Dh\left(z_0,g(z_0)\right)\circ\Inc_{1\cdots d-m}\circ \Inc_i
++ Dh\left(z_0,g(z_0)\right)\circ \Inc_{d-m+1 \cdots d}\circ Dg(z_0)\circ \Inc_i
+ \end{dmath*}
+ \begin{dmath*}
+  =D_i h\left(z_0,g(z_0)\right)
++ D_{d-m+1 \cdots d}h\left(z_0,g(z_0)\right)\circ D_i g(z_0)
+ \end{dmath*} 
+\end{dgroup*}
+これに$1$を代入して普通の微分にする(あとでもいいけど)．
+\begin{dgroup*}
+ \begin{dmath*}
+  D_i h\left(z_0,g(z_0)\right)(1)
++ \left(D_{d-m+1 \cdots d}h\left(z_0,g(z_0)\right)\circ D_i g(z_0)\right)(1)
+ \end{dmath*}
+ \begin{dmath*}
+  =\tilde D_i h\left(z_0,g(z_0)\right)
+  + D_{d-m+1 \cdots d}h\left(z_0,g(z_0)\right)( \tilde D_i g(z_0))
+ \end{dmath*}
+ \begin{dmath*}
+  =\tilde D_i h\left(z_0,g(z_0)\right)
+  + D_{d-m+1 \cdots d}h\left(z_0,g(z_0)\right)\left(\sum_{k=1}^{m}\Inc_k
+  \circ \tilde D_i g(z_0)\right) 
+ \end{dmath*}
+ \begin{dmath*}
+  \desceq{線形性}\tilde D_i h\left(z_0,g(z_0)\right)
+  + \sum_{k=1}^{m} D_{d-m+1 \cdots d}h\left(z_0,g(z_0)\right)\left(\Inc_k
+  \circ \tilde D_i g(z_0)\right) 
+ \end{dmath*}
+ \begin{dmath*}
+  \desceq{線形性}\tilde D_i h\left(z_0,g(z_0)\right)
+  + \sum_{k=1}^{m}\left(\Pr_k  \circ \tilde D_i g(z_0)\right) D_{d-m+1
+  \cdots d}h\left(z_0,g(z_0)\right)\left(0\cdots \banme{k}{1}\cdots \banme{m}{0}\right)   
+ \end{dmath*}
+ \begin{dmath*}
+  =\tilde D_i h\left(z_0,g(z_0)\right)
+  + \sum_{k=1}^{m}\left(\Pr_k  \circ \tilde D_i g(z_0)\right) \tilde D_{d-m+k}h\left(z_0,g(z_0)\right)
+ \end{dmath*} 
+\end{dgroup*}
+これは「別の書き方をすると…」の前の部分と同値．$y$の定義に注意．
+
 
 \end{document}
 
