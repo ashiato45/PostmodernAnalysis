@@ -11,12 +11,26 @@
 \newcommand{\inv}[1]{#1^{-1}}
 \newcommand{\Id}{\mathrm{Id}}
 \newcommand{\Inc}{\mathrm{Inc}}
-
+\newcommand{\Image}{\mathrm{Im}}
 \begin{document}
 \maketitle
 
+\tableofcontents
+
 \section{これは何？}
-シュプリンガー(丸善)の「ポストモダン解析学」，原題は「Postmodern Analysis」の行間埋めの記録．
+シュプリンガー(丸善)の「ポストモダン解析学」，原題は「Postmodern
+Analysis」の行間埋めの記録．
+
+\section{6.16の評価}
+\[
+ \max_{x\in I'}\left|\int_{x_0}^x \phi(\xi,f(\xi))\diff \xi\right|
+ \le h \max_{\substack{\xi\in I \\ \left|y-y_0\right|\le \eta}}\left|\phi(\xi,\eta)\right|
+\]
+について，$h$は$I'=[x_0-h,x_0+h]$から来ていて，$x\in I'$より
+\[
+ \left|x_0-x\right|\le h
+\]
+が言えることより．(書いてあるけど)
 
 \section{定理7.39のi$\rightarrow$iii}
 $K$を対象の集合とする．背理法の仮定(仮定1)をすると，$K$の開被覆であって有限被覆
@@ -689,6 +703,177 @@ Dh\left(z_0,g(z_0)\right)\circ\Inc_{1\cdots d-m}
 \end{dgroup*}
 これは「別の書き方をすると…」の前の部分と同値．$y$の定義に注意．
 
+\section{11.7}
+怪しい．
 
+\subsection{区分求積法みたいなの}
+連続関数$f\colon [a,b]\to \R$について，
+\[
+ \int_a^b f(t)\diff t 
+= \lim_{n \rightarrow \infty}\sum_{i=0}^{m-1}f_n(\tau_{n,i})(\tau_{n,i+1}-\tau_{n,i})
+\]
+を示しておきたい．ただし，$f_n$は$f$に一様収束する階段関数の関数列で，
+\footnote{連続関数は許容関数なのでこういうことができる．}
+$\tau_{\text{関数列の番号},\text{区切り番号}}$は階段関数の不連続な点を左から並べたものだとする．
+$\tau_0=a,\, \tau_m=b$である．
+
+不定積分は原始関数で定義されるので，$f,\, f_n$の原始関数のひとつを$F, F_n$とする．
+\begin{dgroup*}
+ \begin{dmath*}
+  \int_a^b f_n(t)\diff t = F_n(b)-F_n(a)
+ \end{dmath*}
+ \begin{dmath*}
+  = \sum_{i=0}^{m-1} F_n(\tau_{n,i+1})-F_n(\tau_{n,i})
+ \end{dmath*}
+ \begin{dmath*}
+  = \sum_{i=0}^{m-1} \int_{\tau_{n,i}}^{\tau_{n,i+1}} f_n(t)\diff t
+ \end{dmath*}
+ \begin{dmath*}
+  \desceq{怪} \sum_{i=0}^{m-1} f_n(\tau_{n,i})
+(\tau_{n,i+1}-\tau_{n,i})
+ \end{dmath*}
+\end{dgroup*}
+これで両辺飛ばすと，左辺については定理6.14に注意して，
+\[
+ \int_a^b f(t)\diff t = \lim_{n\to \infty} \sum_{i=0}^{m-1} f_n(\tau_{n,i})(\tau_{n,i+1}-\tau_{n,i})
+\]
+
+\subsection{式5から式4}
+上の区分求積法で，式5の両辺が飛ばせるようになったので，式4が出た．
+
+\subsection{式6へ}
+\[
+ \norm{\gamma(t_i)-\gamma(t_{i-1})}\le \int_{t_{i-1}}^{t^i}\norm{\dot \gamma(\tau)}\diff \tau
+\]
+で両辺和をとって，$\sup$をとれば，式6を得る．
+
+\section{11.18 Picard-Lindr\"of}
+$\R^d$に対して絶対値記号使ってるしよく分からんので逐語的に追うのは危険ぽ
+い．定理の主張を自然に次のように修正してみる．
+
+$I\,,J$を区間$I\subset \R$と$J\subset \R^d$とする．
+$\phi\colon I\times J\to \R^d$は$B(x_0,\rho)\times B(y_0,\eta)$で連続で
+あり，さらに
+\[
+ \norm{\phi(x,y)}\le M
+\]
+とする．さらに，$B(x_0,\rho)\times B(y_0,\eta)$で$\phi$は第二引数につい
+てリプシッツ条件を満たし，$L$倍で抑えられるとする．このとき，$h>0$が存在して，
+$B(x_0,h)\cap I$で$f'(x)=\phi(x,f(x))$は$f(x_0)=y_0$を満たす唯一の解
+を持つ．
+
+積分方程式
+\[
+ f(x)=y_0+\int_{x_0}^x \phi(\xi,f(\xi))\diff \xi
+\]
+を$I'=[x_0-h,x_0+h]\cap I$として，$I'$上で解けばよい．
+$h$はある程度小さくすればよいことを見ていくので，あとで調節する．
+\[ A=
+\left\{
+f\in C^0(I'); \norm{f-y_0}_{C^0(I')}\le \eta
+\right\}
+\]
+を閉集合として，写像$H\colon A\to C^0(I')$を
+\[
+ H(f)=\left[x\mapsto y_0+\int_{x_0}^x \phi(\xi,f(\xi))\diff \xi
+\right]
+\]
+とし，これにバナッハの不動点定理を適用したい．そのため，
+$\Image(H)\subset A$で，$H$は縮小写像であることを示す．
+
+$\Image(H)\subset A$を示す．$f\in A$を任意にとる．
+\begin{dgroup*}
+ \begin{dmath*}
+  \norm{Hf-y_0}_{C^0(I')} =
+\max_{x\in I'}\left|\int_{x_0}^x \phi(\xi,f(\xi))\diff \xi \right|
+ \end{dmath*}
+ \begin{dmath*}
+  \le \left|x-x_0\right| 
+\max_{(\xi,y)\in I'\times B(y_0,\eta)} \left|\phi(\xi,y)\right|
+ \end{dmath*}
+ \begin{dmath*}
+  \le h
+  \max_{(\xi,y)\in I'\times B(y_0,\eta)} \left|\phi(\xi,y)\right|
+ \end{dmath*}
+ \begin{dmath*}
+  \le hM
+ \end{dmath*}
+\end{dgroup*}
+よって，$h$を$M$に応じて十分小さくとれば，$\norm{Hf-y_0}_{C^0(I')}$
+も十分小さくなる．
+
+次に$H$は縮小写像であることを示す．
+\begin{dgroup*}
+ \begin{dmath*}
+  \norm{Hf-Hg}_{C^0(I')} = 
+\max_{x\in I'}\left|
+\int_{x_0}^x \left(\phi(\xi,f(\xi))-\phi(\xi,g(\xi))\right)\diff \xi
+\right|
+ \end{dmath*}
+ \begin{dmath*}
+  \le \left|x-x_0\right|
+\max_{\xi\in I'}\left|\phi(\xi,f(\xi))-\phi(\xi,g(\xi))\right|
+ \end{dmath*}
+ \begin{dmath*}
+  \le h
+\max_{\xi\in I'}\left|\phi(\xi,f(\xi))-\phi(\xi,g(\xi))\right|
+ \end{dmath*}
+ \begin{dmath*}
+  \le h
+L\max_{\xi\in I'}\left|f(\xi)-g(\xi)\right|
+ \end{dmath*}
+ \begin{dmath*}
+  = hL\norm{f-g}_{C^0(I')}
+ \end{dmath*}
+\end{dgroup*}
+ よって，$L$に応じて$h$を十分小さくして$hL<1$とできる．
+
+以上で，$h<\max(\eta/M,\, 1/L)$とすればバナッハの不動点定理の
+条件を満たす．よって，$H$は不動点$f$を持ちこの$f$は解となる．
+
+\section{11.19}
+先の11.18を考えなおして納得いった．
+$u\colon I\to \R$と$\psi\colon \R\times \R^2$についての2階常微分方程式
+\[
+ u''(x)=\psi\left(x,u(x),u'(x)\right)
+\]
+は，$v\colon I\to \R$についての連立微分方程式
+\[
+ u'(x)=v(x),\, v'(x)=\psi\left(x,u(x),v(x)\right)
+\]
+と同値．$f=(u,v)$とし，
+\[
+ \phi\left(x,(y,z)\right)=
+\tatev{v(x)\\ \psi(x,y,z)}
+\]
+とすると，先の連立微分方程式は，
+\[
+ f'(x)=\psi\left(x,f(x)\right)
+\]
+と同値になる．これで，11.18のリプシッツ条件を考えると，
+\[
+ \norm{\phi(x,y_1,z_1)-\phi(x,y_2,z_2)} \le L\norm{(y_1,z_1)-(y_2,z_2)}
+\]
+ということになる．
+\begin{dgroup*}
+ \begin{dmath*}
+  \norm{\phi(x,y_1,z_1)-\phi(x,y_2,z_2)}
+= \norm{\tatev{0\\ \psi(x,y_1,z_1)-\psi(x,y_2,z_2)}}
+ \end{dmath*}
+ \begin{dmath*}
+  = \norm{\psi(x,y_1,z_1)-\psi(x,y_2,z_2)}
+ \end{dmath*}
+\end{dgroup*}
+以上で，
+\[
+ \norm{\psi(x,y_1,z_1)-\psi(x,y_2,z_2)}
+\le L\norm{\tatev{y_1\\z_1}-\tatev{y_2\\z_2}}
+\]
+右辺は多分，
+\[
+ \norm{\tatev{y_1\\z_1}-\tatev{y_2\\z_2}}
+ \le \|y_1-y_2\|+\|z_1-z_2\|
+\]
+で，1-ノルムが一番大きいということなのかなあ．
 \end{document}
 
