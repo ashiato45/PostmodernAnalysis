@@ -344,4 +344,24 @@ digraph PostmodernAnalysis1{
 		11.18->11.19;
 	}
 
+	subgraph Semicontinuous{
+		7.38->12.1[style="dashed"]; #Dini
+		12.2[shape="box"]; #下半連続
+		7.8->12.2[style="dashed"];
+		12.2->12.3[style="dashed", label="C"];
+		12.2->12.4[style="dashed", label="C"];
+		12.5; #sup,inf,+も下半連続
+		7.39->12.6; #コンパクト上で最小値をとる
+		7.43->12.6[style="dashed"];
+		12.7[shape="box"];  #上包関数
+		12.2,12.7->12.8[style="dashed"]; 
+		12.9[shape="box"]; #台
+		12.6,12.8->12.10; #H_I
+		12.10->12.11[style="dashed"];
+		12.11,12.10->12.12[style="dashed",label="DW"];
+		12.10,12.11->12.13;
+		
+		
+	}
+
 }	

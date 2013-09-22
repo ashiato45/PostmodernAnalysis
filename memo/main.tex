@@ -875,5 +875,106 @@ $u\colon I\to \R$と$\psi\colon \R\times \R^2$についての2階常微分方程式
  \le \|y_1-y_2\|+\|z_1-z_2\|
 \]
 で，1-ノルムが一番大きいということなのかなあ．
+
+\section{12.3}
+定義より明らかだった．「近傍」を「開球」と読み替えたほうが分かりやすいか
+もしれない．つまり，定義12.2を
+\[
+ \Forall{c<f(x)}\Exists{\delta>0}\Forall{y\in U(x,\delta)}c<f(y)
+\]
+と読む．
+
+\section{12.4}
+突然の下極限．定義は，
+\[
+ \liminf_{n\to \infty}a_n = \sup_{n\in \N}\inf_{k\ge n}a_k
+\]
+だった．ということは，「上限をとる」という操作を除くことにより，何らかの$m$について，
+\[
+ \liminf_{n\to \infty}a_n \ge \inf_{k\ge m}a_k 
+\]
+を言うことができる．
+
+\[
+ f(x)=
+\begin{cases}
+ 0 & x \le 0 \\
+ 1 & x > 0
+\end{cases},\, 
+g(x)=
+\begin{cases}
+ 0 & x < 0 \\
+ 1 & x \ge 0
+\end{cases}
+\]
+で確かめた．
+
+\section{12.5}
+$x_n\to x$なる$x_n$をとると，下半連続であることから任意の$c<f(x)$について，
+\[
+ \Forall{y\in U(x,\delta)}c<f(y)
+\]
+なる$\delta$をとることができる．$x_n$は$x$に飛ぶことから，ある番号$N$
+以降の$x_n$は全て$U(x,\delta)$に入り，$c<f(x_n)$となる．これをまとめると
+\[
+ \Forall{c<f(x)}\Exists{N}\Forall{n\ge N} f(x_n)>c
+\]
+$inf$を使って，
+\[
+ \Forall{c<f(x)} \inf_{n\ge N}f(x_n)>c
+\]
+12.4で上限をとるのをやめたのを見ながら，
+\[
+ \Forall{c<f(x)} \liminf_{n\to \infty}f(x_n) > c
+\]
+$c$を$f(x)$に近づけることにより，
+\[
+ \liminf_{n\to \infty}f(x_n) \ge f(x)
+\]
+
+\section{12.10}
+$K$は$K$上で$f$がどうなるかは分からないが，$\R^d-K$では非負．
+終わりと始めだけだと，任意にの$x$と$c<f(x)$について，
+$f=(p,r,s)\in Q$があって，$c\le g_j(x)<f(x)$となる．
+\[
+ \Forall{x}\Forall{c<f(x)}\Exists{j\in Q}c\le g_j(x) < f(x)
+\]
+これで，$c$を$f(x)$に飛ばすと，
+\[
+ \Forall{x} \sup_{j\in Q}g_j(x)=f(x)
+\]
+で，
+\[
+ \sup_{j\in Q}g = f \exdesc{各点}
+\]
+
+$j$を作る過程は$s,\delta,r,q$を確認すれば分かる．
+
+\section{13.3}
+\[
+\| \int_W t_n(x)\diff x - \int_W t_m(x) \diff x\|<2\epsilon l^d
+\]
+は，$t_n$と$t_m$での分割をあわせた分割
+\footnote{立方体になるとは限らない．両方とも立方体で分けてあるなら
+公倍数をとれば立方体にできる．}
+それぞれについて差が$2\epsilon$に収まるので，全部合わせると右辺になる．
+
+\[
+ \sup_{x\in W}\left|f(x)-t_n(x)\right|<\epsilon
+\]
+は，
+\[
+ \sup_{x\in W}\left|t_n(x)-t_m(x)\right|<2\epsilon
+\]
+を出すのに必要だった．
+
+一様収束する列を別にとったとしても\footnote{ここでは立方体分割で作った階
+段関数だけ考えればよい}，立方体分割同士なので同じようにできる．
+
+$W$を変えるときは，広げるときは$\supp f$の外が増えることになるので，そこ
+では自動的に0になる．(もうちょっと真面目にやったほうがいいのかなあ)
+
+
+
 \end{document}
 

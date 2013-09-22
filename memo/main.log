@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.1415926-p3.3-110825-2.4 (sjis) (TeX Live 2012/W32TeX) (format=platex 2012.7.27)  19 SEP 2013 21:53
+This is e-pTeX, Version 3.1415926-p3.3-110825-2.4 (sjis) (TeX Live 2012/W32TeX) (format=platex 2012.7.27)  22 SEP 2013 15:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -469,12 +469,11 @@ LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
 (Font)              scaled to size 4.805pt on input line 3.
  [1
 
-])
+]
+[2])
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
-
-[2]
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
 (Font)              scaled to size 6.72699pt on input line 41.
 LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
@@ -496,14 +495,14 @@ Overfull \hbox (40.94456pt too wide) in paragraph at lines 258--258
 [7] [8] [9] [10] [11] [12]
 File: img/GEDC0001.JPG Graphic file (type eps)
  <img/GEDC0001.JPG> [13] [14] [15] [16] [17] [18]
-[19] (./main.aux) ) 
+[19] [20] (./main.aux) ) 
 Here is how much of TeX's memory you used:
  7398 strings out of 494059
  118255 string characters out of 3158978
- 169041 words of memory out of 3000000
+ 170053 words of memory out of 3000000
  10735 multiletter control sequences out of 15000+200000
  21354 words of font info for 96 fonts, out of 3000000 for 9000
  750 hyphenation exceptions out of 8191
  37i,18n,33p,296b,457s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on main.dvi (19 pages, 68156 bytes).
+Output written on main.dvi (20 pages, 71564 bytes).
